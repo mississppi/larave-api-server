@@ -54,7 +54,25 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $update = [
+            'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+        ];
+
+        $customer = Customer::where('id', $id)->update($update);
+        $customers = Customer::all();
+
+        if ($customer) {
+            return response()->json(
+                $customers,  200
+            );
+        } else {
+            return response()->json([
+                'message' => 'Customer not found',
+            ], 404);
+        }
     }
 
     /**
