@@ -1,0 +1,12 @@
+body {
+    height: 100%;
+}
+
+nav {
+    width: 430px;
+}
+
+.nav-link {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.493);
+}

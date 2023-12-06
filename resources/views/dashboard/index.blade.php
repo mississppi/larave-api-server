@@ -1,9 +1,10 @@
 @extends('layouts.app')
-<div class="row">
-    <div class="col-md-3">
+<div class="d-flex flex-row w-100" style="height: 100%">
+    <nav id="sidebar" >
         @include('layouts.partials.sidebar')
-    </div>
-    <div class="col-md-9">
-        メインコンテンツ
-    </div>
+    </nav>
+    
+    <main class="w-100 bg-light">
+        @include('layouts.partials.main')
+    </main>
 </div>
