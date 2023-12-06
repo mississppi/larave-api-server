@@ -7,6 +7,11 @@ use App\Models\Customer;
 
 class CustomerController extends Controller
 {
+    public function create()
+    {
+        return view('customers.create');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,10 +33,21 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = Customer::create($request->all());
-        return response()->json(
-            $customer, 201
-        );
+        
+        $customer = Customer::create([
+            'name' => $request->input('name'),
+            'phone_number' => $request->input('phone_number'),
+            'email' => $request->input('email'),
+        ]);
+
+        //apiと管理画面からを判定する
+        if($request->header('Accept') === 'application/json'){
+            return response()->json(
+                $customer, 201
+            );
+        } else {
+            return redirect('/dashboard')->with('success', 'Customer created');
+        }
     }
 
     /**
